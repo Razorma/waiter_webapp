@@ -1,0 +1,381 @@
+* {
+    box-sizing: border-box;
+    /* outline: 1px solid red; */
+    padding: 0px;
+    margin: 0px;
+  }
+  body {
+    font-size: 14px;
+    background: url("../images/v6_10.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+  }
+ .container{
+    width: 100%;
+    min-height: 100vh;
+    margin-top: 10px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* start of header section */
+
+
+.header {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    height: 35px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: rgba(193,113,40,1);
+    z-index: 2;
+} 
+/* .logo{
+    width: 4%;
+} */
+nav .bi{
+    display: none;
+}
+@media (max-width: 500px){
+    /* .logo{
+        width: 8%;
+    } */
+    nav .bi{
+        display:block;
+        font-size: 25px;
+    }
+    .navbar ul{
+        background-color: blue;
+        position: fixed;
+        top: 0;
+        right: -200px;
+        width: 200px;
+        height: 100vh;
+        padding-top: 50px;
+        z-index: 2;
+        transition: right 0.5s;
+    }
+    nav ul li{
+        display: block;
+        padding-top: 20px;
+    }
+    nav ul .bi{
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        cursor: pointer;
+    }
+}
+
+.nav-list {
+    display: inline-block;
+}
+@media (min-width: 500px){
+    nav ul li{
+        display: inline-block;
+
+    }
+   
+}
+
+li {
+    list-style: none;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 1rem 1rem;
+}
+
+.navbar ul li a:hover{
+    color: #B30000;
+    ;
+ }
+
+
+ /* start of home section */
+
+
+/* Start of  */
+
+.content{
+    width: 95%;
+    height: 100%;
+    /* position: relative;
+    top: 30px; */
+}
+
+.color-boxes{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.colors{
+    width: calc(100%/3.3);
+    height: 20px;
+    border-radius: 8%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.days {
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    place-items: center;
+    place-content: center;
+    /* background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px); */
+  }
+  
+  .day {
+    width: 100%;
+    height: 100px;
+    /* border: 2px solid #000;  */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 0px ;
+    /* background-color: rgba(193,113,40,1); */
+  }
+  
+  .center-day {
+    height: 100px;
+    /* border: 2px solid #000; */
+    width: calc(100%/2);
+    grid-column: span 2; /* The seventh day spans both columns */
+    grid-row: 4; /* Centered in the middle row */
+    /* background-color: rgba(193,113,40,1); */
+  }
+  
+.top{
+  display: flex;
+  height: 30px;
+  width: 100%;
+  justify-content: space-between;
+  /* border-bottom: 2px solid #000; */
+}
+.nameofday{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(193,113,40,1);
+    width: calc(100%/2);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.loading{
+    display: flex;
+    width: calc(100%/2);
+    background-color: #566171;
+    justify-content: space-around;
+}
+.loading-waiter{
+    display: flex;
+    width: 100px;
+    height: 20px;
+    /* background-color: #566171; */
+    justify-content: space-around;
+}
+.waiter-bar{
+    width: /*calc(100%/5)*/15px;
+    background-color: #c4c4c4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.names{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+}
+.first{
+    background: repeating-linear-gradient(-45deg, #ff0000 1px, #00ff00 5px, #0000ff 5px);
+}
+
+.Under{
+    background-color:rgba(193,113,40,1) ;
+}
+.Enough{
+    background-color: #00ff00;
+}
+.Over{
+    background-color: rgb(6, 170, 182);
+}
+p{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    /* color: rgb(255, 255, 255); */
+    font-weight: 1000;
+}
+.full{
+    background-color: #00ff00;
+}
+@media (min-width: 760px){
+   
+    .content{
+        width: 95%;
+        height: 100%;
+    }
+    
+    .color-boxes{
+        width: 100%;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        position: fixed;
+       top: 35px;
+       left: 0;
+    }
+    .colors{
+        width: calc(40%/3.3);
+        margin-left: 10px;
+        height: 20px;
+        border-radius: 8%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .days {
+        width: 100%;
+        height: 350px;
+        /* margin-top: 20px; */
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        place-items: dsccenter;
+        place-content: center;
+    }
+    .day {
+        width: 90%;
+        height: 100px;
+        /* border: 2px solid #000;  */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        /* background-color: #ffffff; */
+      }
+      
+      .center-day {
+        margin-top: 0px;
+        height: 100px;
+        /* border: 2px solid #000; */
+        margin-bottom: 20px;
+        width: calc(100%/3.5);
+        grid-column: span 3; /* The seventh day spans both columns */
+        grid-row: 4; /* Centered in the middle row */
+        /* background-color: rgba(193,113,40,1); */
+      }
+      
+    .top{
+      display: flex;
+      height: 30px;
+      width: 100%;
+      justify-content: space-between;
+    }
+    .nameofday{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(193,113,40,1);
+        width: calc(100%/2);
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+    .loading{
+        display: flex;
+        width: calc(100%/2);
+        background-color: #566171;
+        justify-content: space-around;
+    }
+    .waiter-bar{
+        width: 20px;
+        background-color: #c4c4c4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .names{
+        width: 100%;
+        height: 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; 
+    }
+}
+
+@media (min-width: 800px){
+    .days {
+        width: 100%;
+        height: 350px;
+        /* margin-top: 20px; */
+        display: grid;
+        grid-template-columns:calc(100%/4) calc(100%/4)  calc(100%/4);
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        place-items: dsccenter;
+        place-content: center;
+    }
+    .color-boxes{
+       position: fixed;
+       top: 35px;
+       left: 0;
+    }
+    .logo{
+        width: 3%;
+    }
+}
+.Enough{
+    background-color: #00ff00;
+}
+.content-waiter{
+    height: 80vh;
+    width: 90%;
+    background-color: chocolate;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+table{
+    border-spacing: 40px 10px;
+}
+td {
+    text-align: center;
+    vertical-align: middle; 
+}
+button{
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+}

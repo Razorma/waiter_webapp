@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <img src="./images/v5_8.png" alt="logo" class="logo" height="30px"/>
+        <nav class="navbar">
+          <i class="bi bi-list" onclick="openmenu()"></i>
+          <ul class="nav-list" id="menu">
+            <i class="bi bi-x" onclick="closemenu()"></i>
+            <li onclick="closemenu()"><a href="/home">Home</a></li>
+            {{!-- <li onclick="closemenu()"><a href="#Admin">Admin</a></li> --}}
+            <li onclick="closemenu()"><a href="/login">logout</a></li>
+          </ul>
+        </nav>
+      </header>
+      <div class="content-waiter">
+        <form action="/waiter/{{name}}" method="post" class="content-waiter">
+        <h2>Welcome, <span>{{name}}</span></h2>
+        <p>Please select days you can work on</p>
+        <input type="hidden" name="userName" id="data-name" value="{{name}}" />
+        <table>
+            <tr>
+                <th>Select</th>
+                <th>Days</th>
+                <th>Progress</th>
+            </tr>
+            <tr >
+                <td><input type="checkbox" name="day" id="sunday" value="Sunday"> </td>
+                <td>Sunday</td>
+                <td>
+                    <div class="loading-waiter">
+                        <div class="waiter-bar "></div>
+                        <div class="waiter-bar "></div>
+                        <div class="waiter-bar "></div>
+                      </div>
+                </td>
+            </tr>
+            <tr >
+                <td><input type="checkbox" name="day" id="Monday" value="Monday"> </td>
+                <td>Monday</td>
+                <td>
+                    <div class="loading-waiter">
+                        <div class="waiter-bar "></div>
+                        <div class="waiter-bar "></div>
+                        <div class="waiter-bar"></div>
+                      </div>
+                </td>
+            </tr>
+            <tr >
+                <td><input type="checkbox" name="day" id="Tuesday" value="Tuesday"> </td>
+                <td>Tuesday</td>
+                <td>
+                    <div class="loading-waiter">
+                        <div class="waiter-bar "></div>
+                        <div class="waiter-bar"></div>
+                        <div class="waiter-bar"></div>
+                      </div>
+                </td>
+            </tr>
+            <tr >
+                <td><input type="checkbox" name="day" id="Wednesday" value="Wednesday"> </td>
+                <td>Wednesday</td>
+                <td>
+                    <div class="loading-waiter">
+                        <div class="waiter-bar "></div>
+                        <div class="waiter-bar"></div>
+                        <div class="waiter-bar"></div>
+                      </div>
+                </td>
+            </tr>
+            <tr >
+                <td><input type="checkbox" name="day" id="Thursday" value="Thursday"> </td>
+                <td>Thursday</td>
+                <td>
+                    <div class="loading-waiter">
+                        <div class="waiter-bar "></div>
+                        <div class="waiter-bar"></div>
+                        <div class="waiter-bar"></div>
+                      </div>
+                </td>
+            </tr>
+            <tr >
+                <td><input type="checkbox" name="day" id="Friday" value="Friday"> </td>
+                <td>Friday</td>
+                <td>
+                    <div class="loading-waiter">
+                        <div class="waiter-bar "></div>
+                        <div class="waiter-bar"></div>
+                        <div class="waiter-bar"></div>
+                      </div>
+                </td>
+            </tr>
+            <tr >
+                <td><input type="checkbox" name="day" id="Saturday" value="Saturday"> </td>
+                <td>Saturday</td>
+                <td>
+                    <div class="loading-waiter">
+                        <div class="waiter-bar "></div>
+                        <div class="waiter-bar"></div>
+                        <div class="waiter-bar"></div>
+                      </div>
+                </td>
+            </tr>
+        </table>
+        <div class="buttons">
+            <button type="submit">Submit</button>
+        </form>
+        <a href="/login"><button type="button">Logout</button></a>
+            
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
