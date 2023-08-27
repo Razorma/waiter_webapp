@@ -40,10 +40,10 @@ export default function WaiterDays() {
                 
             }
         });
-
+        console.log(overDays)
         return {
             allDays,
-            overDays
+            overDaysObject
         }
     }
      

@@ -429,6 +429,9 @@ button{
 .error{
     color: #ff0000;
 }
+.errorM{
+    color: #ff0000;
+}
 
 .success{ 
     color: #008512;

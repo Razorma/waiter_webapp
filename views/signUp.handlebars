@@ -10,7 +10,7 @@
         <form action="/signUp" method="post">
             <div class="signUp-box">
                 <h1>Sign Up</h1>
-                
+                  <div class="errorM"></div>
                   {{#if messages.error}}
                   <div class="error"><p class="mess">{{messages.error}}</p></div>
                   {{/if}}
@@ -30,7 +30,7 @@
                 </div>
                 <div class="usename-box">
                     <label for="usename" class="loginLabel">Name</label>
-                    <input type="text" name="users" id="usename" class="login-username" value="" required>
+                    <input type="text" name="users" id="usename" class="login-username signUpName" value="" required>
                 </div>
                 <div class="password-box">
                     <label for="password" class="loginLabel">Password</label>

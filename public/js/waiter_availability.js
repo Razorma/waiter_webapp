@@ -11,6 +11,26 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 3000);
         }
     }
+    //Get the input for signup name if it exists
+    if (document.querySelector(".signUpName")) {
+    const nameInput = document.querySelector(".signUpName");
+    nameInput.addEventListener('keydown', function (press) {
+        //validate if it is real name
+        const letterRegex = /^[a-zA-Z ]*$/;
+        if (!letterRegex.test(press.key)) {
+            //Add the messageclass
+            document.querySelector('.errorM').classList.add("mess");
+            document.querySelector('.errorM').innerHTML = "Please enter real name of only letters";
+            //Add remove the element
+            setTimeout(function () {
+                document.querySelector('.errorM').classList.remove("mess");
+                document.querySelector('.errorM').innerHTML = '';
+            }, 2500)
+            //prevent the character
+            press.preventDefault();
+        }
+    });
+   }
     if (document.querySelector('.success')) {
         // If the innerHTML of the element is not empty
         if (document.querySelector('.success').innerHTML !== '') {

@@ -7,39 +7,18 @@ import pgPromise from "pg-promise";
 import flash from "express-flash";
 import session from "express-session";
 import bcrypt from "bcrypt";
+import WaiterDays from "./waiter_days.js";
+import helpers from "./handlebarsHelpers.js"; 
+
 
 let app = express();
 const pgp = pgPromise();
 const saltRounds = 10;
-const connectionString = process.env.DATABASE_URL || 'postgresql://postgres:jayson@2001@localhost:5432/waiter_schedule';
+const connectionString = process.env.DATABASE_URL 
 // const ssl = { rejectUnauthorized: false }
 //, ssl 
 
 const db = pgp({ connectionString});
-
-Handlebars.registerHelper('ifCond', function(v1, operator, v2, options) {
-    switch (operator) {
-        case '===':
-            return (v1 === v2) ? options.fn(this) : options.inverse(this);
-        default:
-            return options.inverse(this);
-    }
-});
-
-// Handlebars.registerHelper('sliceArray', function (array, start, end, options) {
-//   const slicedArray = array.slice(start, end);
-//   let result = '';
-//   for (let i = 0; i < slicedArray.length; i++) {
-//     result += options.fn(slicedArray[i]);
-//   }
-//   return result;
-// });
-
-
-// Register a custom Handlebars helper for equality comparison
-Handlebars.registerHelper('eq', function(a, b, options) {
-  return a === b ? options.fn(this) : options.inverse(this);
-});
 
 
 
@@ -51,6 +30,7 @@ app.use(session({
 app.use(flash());
 
 const waiterSchedule = WaiterSchedule(db,bcrypt);
+const waiterDays = WaiterDays()
 // await waiterSchedule.addWeiter('bheka','ilovescripts');
 
 
@@ -59,16 +39,12 @@ const waiterSchedule = WaiterSchedule(db,bcrypt);
     
     
 
-
+const handlebarsHelpers = helpers()
 
 // Setup the Handlebars view engine
 app.engine('handlebars', engine({
   // Define a custom Handlebars helper
-  helpers: {
-    capitalize: function(string) {
-      return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-  }
+  helpers: handlebarsHelpers
 }));
 app.set('view engine', 'handlebars');
 app.set('views', './views');
@@ -101,8 +77,9 @@ app.post("/waiter", async function(req, res){
 
             res.redirect('/home');
         } else if (role === 'waiter') {
-          const groupedDays = (await waiterSchedule.getEachDay()).Days
-          const overGroupedDaysClass = (await waiterSchedule.getEachDay()).overDaysObject
+          const result = await waiterSchedule.getEachDay()
+          const groupedDays = waiterDays.cutShedule(result)
+          const overGroupedDaysClass = waiterDays.returnAllShedule(result).overDaysObject
 
           res.render('waiters', {
             name:req.body.users,
@@ -131,8 +108,9 @@ app.post("/waiter/:username",async function(req, res){
   try{
     await waiterSchedule.addWaiterWorkingDate(username, selectedDays)
     currentUser = username
-    const groupedDays = (await waiterSchedule.getEachDay()).Days
-    const overGroupedDaysClass = (await waiterSchedule.getEachDay()).overDaysObject
+    const result = await waiterSchedule.getEachDay()
+    const groupedDays = waiterDays.cutShedule(result)
+    const overGroupedDaysClass = waiterDays.returnAllShedule(result).overDaysObject
     req.flash('success', "Successfully booked")
     res.render('waiters',{
       name:username,
@@ -140,8 +118,9 @@ app.post("/waiter/:username",async function(req, res){
       overGroupedDaysClass
     });
   }catch(error){
-    const groupedDays = (await waiterSchedule.getEachDay()).Days
-    const overGroupedDaysClass = (await waiterSchedule.getEachDay()).overDaysObject
+    const result = await waiterSchedule.getEachDay()
+    const groupedDays = waiterDays.cutShedule(result)
+    const overGroupedDaysClass = waiterDays.returnAllShedule(result).overDaysObject
     req.flash('error', error.message)
     res.render('waiters',{
       name:username,
@@ -161,8 +140,9 @@ app.get("/waiter/:username",async function(req, res){
 
   try{
 
-    const groupedDays =  (await waiterSchedule.getEachDay()).Days
-    const overGroupedDaysClass = (await waiterSchedule.getEachDay()).overDaysObject
+    const result = await waiterSchedule.getEachDay()
+    const groupedDays = waiterDays.cutShedule(result)
+    const overGroupedDaysClass = waiterDays.returnAllShedule(result).overDaysObject
   
     res.render('waiters',{
     name:currentUser,
@@ -177,9 +157,9 @@ app.get("/schedule",async function(req, res){
 
   try{
 
-    const groupedDays = (await waiterSchedule.getEachDay()).Days
-    const overGroupedDaysClass = (await waiterSchedule.getEachDay()).overDaysObject
-
+    const result = await waiterSchedule.getEachDay()
+    const groupedDays = waiterDays.cutShedule(result)
+    const overGroupedDaysClass = waiterDays.returnAllShedule(result).overDaysObject
     res.render('schedule',{
       schedule:await waiterSchedule.getWaiterWorkingDate(currentUser),
       groupedDays,
@@ -210,8 +190,9 @@ app.post("/schedule/:username",async  function(req, res){
 app.get("/home", async function(req, res){
 
 try{
-  const groupedDays = (await waiterSchedule.getEachDay()).Days
-  const overGroupedDaysClass = (await waiterSchedule.getEachDay()).overDaysObject
+  const result = await waiterSchedule.getEachDay()
+  const groupedDays = waiterDays.cutShedule(result)
+  const overGroupedDaysClass = waiterDays.returnAllShedule(result).overDaysObject
   
 
    res.render('home',{groupedDays,overGroupedDaysClass});
@@ -244,7 +225,8 @@ app.post("/signUp", async function(req, res){
 app.get("/list",async function(req, res){
 
   try{
-    const allDays = (await waiterSchedule.getEachDay()).allDays
+    const result = await waiterSchedule.getEachDay()
+    const allDays = waiterDays.returnAllShedule(result).allDays
 
      res.render('list',{allDays});
   }catch(error){
