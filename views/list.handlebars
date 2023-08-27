@@ -1,0 +1,36 @@
+<div class="container">
+    <header class="header">
+        <img src="./images/v5_8.png" alt="logo" class="logo" height="30px"/>
+        <nav class="navbar">
+          <i class="bi bi-list" onclick="openmenu()"></i>
+          <ul class="nav-list" id="menu">
+            <i class="bi bi-x" onclick="closemenu()"></i>
+            <li onclick="closemenu()"><a href="/Home">Home</a></li>
+            <li onclick="closemenu()"><a href="/login">logout</a></li>
+          </ul>
+        </nav>
+      </header>
+    <div class="listbox">
+        {{#each allDays}}
+        <div class="colum-list">
+        <table class="listboxTable">
+            <h1 class="list-day-name">{{capitalize @key}}</h1>
+            <tr>
+                <th>Name</th>
+                <th>Remove</th>
+            </tr>
+            {{#each this}}
+            <form action="/list/{{this.waiter_name}}" method="post" class="content-waiter">
+            <input type="hidden" name="day" value="{{this.day_id}}">
+            <tr>        
+                <td>{{this.waiter_name}}</td>
+                <td><button type="submit" class="shedule-button delete">Delete</button></td>      
+            </tr>
+            </form>
+            {{/each}}
+        </table>
+        </div>
+        {{/each}}
+    </div>
+</div>
+

@@ -10,6 +10,9 @@
         <form action="/waiter" method="post">
             <div class="login-box">
                 <h1>Sign in</h1>
+                {{#if messages.error}}
+                <div class="error"><p class="mess">{{messages.error}}</p></div>
+                {{/if}}
                 <div class="usename-box">
                     <label for="usename" class="loginLabel">Name</label>
                     <input type="text" name="users" id="usename" class="login-username" value="" required>

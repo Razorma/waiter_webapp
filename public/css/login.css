@@ -39,3 +39,74 @@
     background-color: rgb(0, 0, 27);
     color: white;
 }
+
+
+/* admin */
+
+.signUp-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background-color: rgb(0, 0, 27);
+    padding: 10px 10px 30px 10px;
+    height: 100%;
+    width: 300px;
+    color: white;
+}
+
+
+.role {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+
+}
+
+.input_label{
+    display: flex;
+    width: 70px;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+}
+
+.input_label label {
+    text-align: center;
+    font-weight: bold;
+}
+
+.input_label input[type="radio"] {
+    margin: auto;
+    /* margin: 0; */
+    width: 20px;
+} 
+
+.usename-box{
+    display: flex;
+    flex-direction: column;
+    gap: 5px; 
+}
+.password-box{
+    display: flex;
+    flex-direction: column;
+    gap: 5px; 
+}
+.loginLabel{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 1000;
+}
+.login-username{
+    height: 30px;
+    background-color: rgb(0, 0, 27);
+    color: white;
+}
+.login-password{
+    height: 30px;
+    background-color: rgb(0, 0, 27);
+    color: white;
+}
+

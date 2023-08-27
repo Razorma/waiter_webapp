@@ -13,8 +13,6 @@
           <i class="bi bi-list" onclick="openmenu()"></i>
           <ul class="nav-list" id="menu">
             <i class="bi bi-x" onclick="closemenu()"></i>
-            <li onclick="closemenu()"><a href="/home">Home</a></li>
-            {{!-- <li onclick="closemenu()"><a href="#Admin">Admin</a></li> --}}
             <li onclick="closemenu()"><a href="/login">logout</a></li>
           </ul>
         </nav>
@@ -24,94 +22,318 @@
         <h2>Welcome, <span>{{name}}</span></h2>
         <p>Please select days you can work on</p>
         <input type="hidden" name="userName" id="data-name" value="{{name}}" />
+        {{#if messages.error}}
+        <div class="error"><p class="mess">{{messages.error}}</p></div>
+        {{/if}}
+        {{#if messages.success}}
+        <div class="success"><p class="mess">{{messages.success}}</p></div>
+        {{/if}}
         <table>
             <tr>
                 <th>Select</th>
                 <th>Days</th>
-                <th>Progress</th>
+                <th>Day Progress</th>
             </tr>
             <tr >
-                <td><input type="checkbox" name="day" id="sunday" value="Sunday"> </td>
+                {{#each groupedDays}}
+                {{#ifCond @key '===' 'sunday'}}
+                {{#eq this.length 3}}
+                <td><input type="checkbox" class="Sunday" name="day" id="sunday" value="sunday"></td>
+                {{else}}
+                <td><input type="checkbox" name="day" id="sunday" value="sunday"></td>
+                {{/eq}}
+                {{/ifCond}}
+                {{/each}}
                 <td>Sunday</td>
+                
                 <td>
+                  {{#each groupedDays}}
+                  {{#ifCond @key '===' 'sunday'}}
                     <div class="loading-waiter">
-                        <div class="waiter-bar "></div>
-                        <div class="waiter-bar "></div>
-                        <div class="waiter-bar "></div>
-                      </div>
+                      {{#eq this.length 1}}
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar"></div>
+                      <div class="waiter-bar"></div>
+                      {{else}}
+                      {{#eq this.length 2}}
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar"></div>
+                      {{else}}
+                      {{#eq this.length 3}}
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar first"></div>
+                      {{else}}
+                      <div class="waiter-bar "></div>
+                      <div class="waiter-bar "></div>
+                      <div class="waiter-bar "></div>
+                      {{/eq}}
+                      {{/eq}}
+                      {{/eq}}
+                    </div>
+                  {{/ifCond}}
+                  {{/each}}
                 </td>
+                
             </tr>
             <tr >
-                <td><input type="checkbox" name="day" id="Monday" value="Monday"> </td>
+                {{#each groupedDays}}
+                {{#ifCond @key '===' 'monday'}}
+                {{#eq this.length 3}}
+                <td><input type="checkbox" name="day" id="Monday" value="monday" class="Monday"> </td>
+                {{else}}
+                <td><input type="checkbox" name="day" id="Monday" value="monday"> </td>
+                {{/eq}}
+                {{/ifCond}}
+                {{/each}}
+                
                 <td>Monday</td>
                 <td>
+                  {{#each groupedDays}}
+                  {{#ifCond @key '===' 'monday'}}
                     <div class="loading-waiter">
-                        <div class="waiter-bar "></div>
-                        <div class="waiter-bar "></div>
-                        <div class="waiter-bar"></div>
-                      </div>
+                      {{#eq this.length 1}}
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar"></div>
+                      <div class="waiter-bar"></div>
+                      {{else}}
+                      {{#eq this.length 2}}
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar"></div>
+                      {{else}}
+                      {{#eq this.length 3}}
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar first"></div>
+                      {{else}}
+                      <div class="waiter-bar "></div>
+                      <div class="waiter-bar "></div>
+                      <div class="waiter-bar "></div>
+                      {{/eq}}
+                      {{/eq}}
+                      {{/eq}}
+                    </div>
+                  {{/ifCond}}
+                  {{/each}}
                 </td>
             </tr>
             <tr >
-                <td><input type="checkbox" name="day" id="Tuesday" value="Tuesday"> </td>
+                {{#each groupedDays}}
+                {{#ifCond @key '===' 'tuesday'}}
+                {{#eq this.length 3}}
+                <td><input type="checkbox" name="day" id="Tuesday" value="tuesday" class="Tuesday"> </td>
+                {{else}}
+                <td><input type="checkbox" name="day" id="Tuesday" value="tuesday"> </td>
+                {{/eq}}
+                {{/ifCond}}
+                {{/each}}
+                
                 <td>Tuesday</td>
                 <td>
+                  {{#each groupedDays}}
+                  {{#ifCond @key '===' 'tuesday'}}
                     <div class="loading-waiter">
-                        <div class="waiter-bar "></div>
-                        <div class="waiter-bar"></div>
-                        <div class="waiter-bar"></div>
-                      </div>
+                      {{#eq this.length 1}}
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar"></div>
+                      <div class="waiter-bar"></div>
+                      {{else}}
+                      {{#eq this.length 2}}
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar"></div>
+                      {{else}}
+                      {{#eq this.length 3}}
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar first"></div>
+                      {{else}}
+                      <div class="waiter-bar "></div>
+                      <div class="waiter-bar "></div>
+                      <div class="waiter-bar "></div>
+                      {{/eq}}
+                      {{/eq}}
+                      {{/eq}}
+                    </div>
+                  {{/ifCond}}
+                  {{/each}}
                 </td>
             </tr>
             <tr >
-                <td><input type="checkbox" name="day" id="Wednesday" value="Wednesday"> </td>
+                {{#each groupedDays}}
+                {{#ifCond @key '===' 'wednesday'}}
+                {{#eq this.length 3}}
+                <td><input type="checkbox" name="day" id="Wednesday" value="wednesday" class="Wednesday"> </td>
+                {{else}}
+                <td><input type="checkbox" name="day" id="Wednesday" value="wednesday"> </td>
+                {{/eq}}
+                {{/ifCond}}
+                {{/each}}
+                
                 <td>Wednesday</td>
                 <td>
+                  {{#each groupedDays}}
+                  {{#ifCond @key '===' 'wednesday'}}
                     <div class="loading-waiter">
-                        <div class="waiter-bar "></div>
-                        <div class="waiter-bar"></div>
-                        <div class="waiter-bar"></div>
-                      </div>
+                      {{#eq this.length 1}}
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar"></div>
+                      <div class="waiter-bar"></div>
+                      {{else}}
+                      {{#eq this.length 2}}
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar"></div>
+                      {{else}}
+                      {{#eq this.length 3}}
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar first"></div>
+                      {{else}}
+                      <div class="waiter-bar "></div>
+                      <div class="waiter-bar "></div>
+                      <div class="waiter-bar "></div>
+                      {{/eq}}
+                      {{/eq}}
+                      {{/eq}}
+                    </div>
+                  {{/ifCond}}
+                  {{/each}}
                 </td>
             </tr>
             <tr >
-                <td><input type="checkbox" name="day" id="Thursday" value="Thursday"> </td>
+              {{#each groupedDays}}
+              {{#ifCond @key '===' 'thursday'}}
+              {{#eq this.length 3}}
+              <td><input type="checkbox" name="day" id="Thursday" value="thursday" class="Thursday"> </td>
+              {{else}}
+              <td><input type="checkbox" name="day" id="Thursday" value="thursday"> </td>
+              {{/eq}}
+              {{/ifCond}}
+              {{/each}}
+                
                 <td>Thursday</td>
                 <td>
+                  {{#each groupedDays}}
+                  {{#ifCond @key '===' 'thursday'}}
                     <div class="loading-waiter">
-                        <div class="waiter-bar "></div>
-                        <div class="waiter-bar"></div>
-                        <div class="waiter-bar"></div>
-                      </div>
+                      {{#eq this.length 1}}
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar"></div>
+                      <div class="waiter-bar"></div>
+                      {{else}}
+                      {{#eq this.length 2}}
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar"></div>
+                      {{else}}
+                      {{#eq this.length 3}}
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar first"></div>
+                      {{else}}
+                      <div class="waiter-bar "></div>
+                      <div class="waiter-bar "></div>
+                      <div class="waiter-bar "></div>
+                      {{/eq}}
+                      {{/eq}}
+                      {{/eq}}
+                    </div>
+                  {{/ifCond}}
+                  {{/each}}
                 </td>
             </tr>
             <tr >
-                <td><input type="checkbox" name="day" id="Friday" value="Friday"> </td>
+                {{#each groupedDays}}
+                {{#ifCond @key '===' 'friday'}}
+                {{#eq this.length 3}}
+                <td><input type="checkbox" name="day" id="Friday" value="friday" class="Friday"> </td>
+                {{else}}
+                <td><input type="checkbox" name="day" id="Friday" value="friday"> </td>
+                {{/eq}}
+                {{/ifCond}}
+                {{/each}}
+                
                 <td>Friday</td>
                 <td>
+                  {{#each groupedDays}}
+                  {{#ifCond @key '===' 'friday'}}
                     <div class="loading-waiter">
-                        <div class="waiter-bar "></div>
-                        <div class="waiter-bar"></div>
-                        <div class="waiter-bar"></div>
-                      </div>
+                      {{#eq this.length 1}}
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar"></div>
+                      <div class="waiter-bar"></div>
+                      {{else}}
+                      {{#eq this.length 2}}
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar"></div>
+                      {{else}}
+                      {{#eq this.length 3}}
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar first"></div>
+                      {{else}}
+                      <div class="waiter-bar "></div>
+                      <div class="waiter-bar "></div>
+                      <div class="waiter-bar "></div>
+                      {{/eq}}
+                      {{/eq}}
+                      {{/eq}}
+                    </div>
+                  {{/ifCond}}
+                  {{/each}}
                 </td>
             </tr>
             <tr >
-                <td><input type="checkbox" name="day" id="Saturday" value="Saturday"> </td>
+                {{#each groupedDays}}
+                {{#ifCond @key '===' 'saturday'}}
+                {{#eq this.length 3}}
+                <td><input type="checkbox" name="day" id="Saturday" value="saturday" class="Saturday"> </td>
+                {{else}}
+                <td><input type="checkbox" name="day" id="Saturday" value="saturday"> </td>
+                {{/eq}}
+                {{/ifCond}}
+                {{/each}}
+                
                 <td>Saturday</td>
                 <td>
+                  {{#each groupedDays}}
+                  {{#ifCond @key '===' 'saturday'}}
                     <div class="loading-waiter">
-                        <div class="waiter-bar "></div>
-                        <div class="waiter-bar"></div>
-                        <div class="waiter-bar"></div>
-                      </div>
+                      {{#eq this.length 1}}
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar"></div>
+                      <div class="waiter-bar"></div>
+                      {{else}}
+                      {{#eq this.length 2}}
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar"></div>
+                      {{else}}
+                      {{#eq this.length 3}}
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar first"></div>
+                      <div class="waiter-bar first"></div>
+                      {{else}}
+                      <div class="waiter-bar "></div>
+                      <div class="waiter-bar "></div>
+                      <div class="waiter-bar "></div>
+                      {{/eq}}
+                      {{/eq}}
+                      {{/eq}}
+                    </div>
+                  {{/ifCond}}
+                  {{/each}}
                 </td>
             </tr>
         </table>
         <div class="buttons">
             <button type="submit">Submit</button>
         </form>
-        <a href="/login"><button type="button">Logout</button></a>
+        <a href="/schedule"><button type="button">Schedule</button></a>
             
         </div>
       </div>

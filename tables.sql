@@ -7,13 +7,13 @@ CREATE TABLE IF NOT EXISTS shifts(
     id serial PRIMARY KEY,
     waiter_name varchar(20) NOT NULL,
     day_id int REFERENCES days(id) ON DELETE CASCADE,
-    CONSTRAINT unique_waiter_name UNIQUE (waiter_name)
 );
 
 CREATE TABLE IF NOT EXISTS waiters(
     id serial PRIMARY KEY,
     user_name varchar(20) NOT NULL,
     password varchar(20) NOT NULL,
+    role varchar(255) NOT NULL,
     CONSTRAINT unique_user_name UNIQUE (user_name)
 );
 
@@ -25,8 +25,7 @@ INSERT INTO days (day)
         ('wednesday'),
         ('thursday'),
         ('friday'),
-        ('saturday'),
-        ('sunday')
+        ('saturday')
       ) AS new_day(day)
       WHERE NOT EXISTS (
         SELECT 1 FROM days WHERE day = new_day.day

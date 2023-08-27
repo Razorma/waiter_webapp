@@ -8,8 +8,26 @@
   <body>
     <div class="container">
         <form action="/signUp" method="post">
-            <div class="login-box">
+            <div class="signUp-box">
                 <h1>Sign Up</h1>
+                
+                  {{#if messages.error}}
+                  <div class="error"><p class="mess">{{messages.error}}</p></div>
+                  {{/if}}
+                  {{#if messages.success}}
+                  <div class="success"><p class="mess">{{messages.success}}</p></div>
+                  {{/if}}
+                 <div class="role">
+                  <div class="input_label">
+                    <label for="admin">admin</label>
+                    <input type="radio" name="type" id="admin" class="login-username" value="admin" required>
+                  </div>
+                  <div class="input_label">
+                    <label for="waiter">waiter</label>
+                    <input type="radio" name="type" id="waiter" class="login-username" value="waiter" required>  
+                  </div>
+                  
+                </div>
                 <div class="usename-box">
                     <label for="usename" class="loginLabel">Name</label>
                     <input type="text" name="users" id="usename" class="login-username" value="" required>
@@ -19,8 +37,10 @@
                     <input type="password" name="password" id="password" class="login-password" required>
                 </div>
                 <button type="submit">sign in</button>
+                </form>
+                <a href="/login">Back to login</a>
             </div>
-        </form>
+        
     </div>
   </body>
 </html>

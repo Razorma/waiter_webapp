@@ -12,8 +12,7 @@
           <i class="bi bi-list" onclick="openmenu()"></i>
           <ul class="nav-list" id="menu">
             <i class="bi bi-x" onclick="closemenu()"></i>
-            {{!-- <li onclick="closemenu()"><a href="#Home">Home</a></li> --}}
-            <li onclick="closemenu()"><a href="/waiter">Schedule</a></li>
+            <li onclick="closemenu()"><a href="/list">Schedule</a></li>
             <li onclick="closemenu()"><a href="/login">logout</a></li>
           </ul>
         </nav>
@@ -28,124 +27,36 @@
           {{#each groupedDays}}
           <div class="day {{#ifCond @key '===' 'saturday'}}center-day{{/ifCond}}">
             <div class="top">
-              <div class="nameofday">
-                {{@key}} <!-- Display the day key -->
+              <div class="nameofday  {{#eq this.length 1}}Under{{else}}{{#eq this.length 2}}Under{{else}}{{#eq this.length 3}}Enough{{/eq}}{{/eq}}{{/eq}} {{lookup ../overGroupedDaysClass @key}}">
+                {{capitalize @key}}
               </div>
               <div class="loading">
-                <div class="waiter-bar first"></div>
-                <div class="waiter-bar"></div>
-                <div class="waiter-bar"></div>
+              {{#eq this.length 1}}
+              <div class="waiter-bar first"></div>
+              <div class="waiter-bar"></div>
+              <div class="waiter-bar"></div>
+              {{else}}
+              {{#eq this.length 2}}
+              <div class="waiter-bar first"></div>
+              <div class="waiter-bar first"></div>
+              <div class="waiter-bar"></div>
+              {{else}}
+              {{#eq this.length 3}}
+              <div class="waiter-bar first"></div>
+              <div class="waiter-bar first"></div>
+              <div class="waiter-bar first"></div>
+              {{/eq}}
+              {{/eq}}
+              {{/eq}}
               </div>
             </div>
             <div class="names">
               {{#each this}} <!-- Iterate through the waiters array for the current day -->
-              <p>{{name}}</p>
+              <p>{{waiter_name}}</p>
               {{/each}}
             </div>
           </div>
           {{/each}}
-          {{!-- <div class="day">
-            <div class="top">
-              <div class="nameofday">
-                Monday
-              </div>
-              <div class="loading">
-                <div class="waiter-bar first"></div>
-                <div class="waiter-bar"></div>
-                <div class="waiter-bar"></div>
-              </div>
-            </div>
-            <div class="names">
-              <p>Nomsa</p>
-              <p></p>
-              <p></p>
-            </div>
-          </div>
-          <div class="day">
-            <div class="top">
-              <div class="nameofday">
-                Tuesday
-              </div>
-              <div class="loading">
-                <div class="waiter-bar first"></div>
-                <div class="waiter-bar"></div>
-                <div class="waiter-bar"></div>
-              </div>
-            </div>
-            <div class="names">
-              <p>Nomsa</p>
-              <p></p>
-              <p></p>
-            </div>
-          </div>
-          <div class="day">
-            <div class="top">
-              <div class="nameofday">
-                Wednesday
-              </div>
-              <div class="loading">
-                <div class="waiter-bar first"></div>
-                <div class="waiter-bar"></div>
-                <div class="waiter-bar"></div>
-              </div>
-            </div>
-            <div class="names">
-              <p>Nomsa</p>
-              <p></p>
-              <p></p>
-            </div>
-          </div>
-          <div class="day">
-            <div class="top">
-              <div class="nameofday Enough">
-                Thursday
-              </div>
-              <div class="loading">
-                <div class="waiter-bar first"></div>
-                <div class="waiter-bar first"></div>
-                <div class="waiter-bar first"></div>
-              </div>
-            </div>
-            <div class="names ">
-              <p>Nomsa</p>
-              <p>Nomsa</p>
-              <p>Nomsa</p>
-            </div>
-          </div>
-          <div class="day">
-            <div class="top">
-              <div class="nameofday">
-                Friday
-              </div>
-              <div class="loading">
-                <div class="waiter-bar first"></div>
-                <div class="waiter-bar first"></div>
-                <div class="waiter-bar"></div>
-              </div>
-            </div>
-            <div class="names">
-              <p>Nomsa</p>
-              <p>Nomsa</p>
-              <p></p>
-            </div>
-          </div>
-          <div class="center-day">
-            <div class="top">
-              <div class="nameofday">
-                Saturday
-              </div>
-              <div class="loading">
-                <div class="waiter-bar first"></div>
-                <div class="waiter-bar "></div>
-                <div class="waiter-bar"></div>
-              </div>
-            </div>
-            <div class="names">
-              <p>Nomsa</p>
-              <p>Nomsa</p>
-              <p></p>
-            </div>
-          </div> --}}
         </div>
       </div>
     </div>

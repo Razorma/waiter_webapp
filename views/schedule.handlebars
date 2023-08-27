@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <img src="./images/v5_8.png" alt="logo" class="logo" height="30px"/>
+        <nav class="navbar">
+          <i class="bi bi-list" onclick="openmenu()"></i>
+          <ul class="nav-list" id="menu">
+            <i class="bi bi-x" onclick="closemenu()"></i>
+            <li onclick="closemenu()"><a href="/login">logout</a></li>
+          </ul>
+        </nav>
+      </header>
+      <div class="content-waiter">
+        
+        {{#if messages.error}}
+        <div class="error"><p class="mess">{{messages.error}}</p></div>
+        {{/if}}
+        <h2>Here is your schedule</h2>
+        <table>
+            <tr>
+                <th>Days</th>
+                <th>Name</th>
+                <th>Delete</th>
+            </tr>
+            {{#each schedule}}
+            <form action="/schedule/{{this.waiter_name}}" method="post" class="content-waiter">
+            <input type="hidden" name="day" value="{{this.day_id}}">
+            <tr >
+                <td>{{capitalize this.day}}</td>
+                <td>{{this.waiter_name}}</td>
+                <td><button type="submit" class="shedule-button delete">Delete</button></td>
+            </tr>
+            </form>
+             {{/each}}
+        </table> 
+        <a href="/waiter/{{currentUser}}"><button type="button" class="shedule-button">Back</button></a>    
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
