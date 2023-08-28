@@ -27,7 +27,7 @@
           {{#each groupedDays}}
           <div class="day {{#ifCond @key '===' 'saturday'}}center-day{{/ifCond}}">
             <div class="top">
-              <div class="nameofday  {{#eq this.length 1}}Under{{else}}{{#eq this.length 3}}Enough{{/eq}}{{/eq}} {{lookup ../overGroupedDaysClass @key}}">
+              <div class="nameofday  {{#eq this.length 1}}Under{{else}}{{#eq this.length 2}}Under{{else}}{{#eq this.length 3}}Enough{{/eq}}{{/eq}}{{/eq}} {{lookup ../overGroupedDaysClass @key}}">
                 {{capitalize @key}}
               </div>
               <div class="loading">
@@ -51,7 +51,7 @@
               </div>
             </div>
             <div class="names">
-              {{#each this}} <!-- Iterate through the waiters array for the current day -->
+              {{#each this}} 
               <p>{{waiter_name}}</p>
               {{/each}}
             </div>
