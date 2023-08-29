@@ -27,6 +27,7 @@ export default function userCredentialRoutes(waiterSchedule){
           const hashedPassword = await bcrypt.hash(password, saltRounds);
           await waiterSchedule.addWeiter(users,hashedPassword,type);
           req.flash('success', "User Successfully Added")
+          res.render('signUp');
       
         }catch(error){
 
@@ -38,6 +39,8 @@ export default function userCredentialRoutes(waiterSchedule){
           console.log('error', error.message)
           res.redirect('/signUp')
         }
+        
+        
       }
 
     return{
