@@ -1,6 +1,7 @@
+import bcrypt from "bcrypt";
 import WaiterDays from "../waiter_days.js";
 const waiterDays = WaiterDays()
-
+let currentUser = ""
 
 export default function adminRoutes(waiterSchedule) {
     // Get users for admin home page

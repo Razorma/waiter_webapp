@@ -1,5 +1,5 @@
-
-
+import bcrypt from "bcrypt";
+let currentUser = ""
 const saltRounds = 10;
 export default function userCredentialRoutes(waiterSchedule){
 
@@ -38,8 +38,6 @@ export default function userCredentialRoutes(waiterSchedule){
           console.log('error', error.message)
           res.redirect('/signUp')
         }
-        
-        res.render('signUp');
       }
 
     return{
