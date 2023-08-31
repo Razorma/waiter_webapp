@@ -1,4 +1,5 @@
 export default function WaiterDays() {
+    let array =[]
     // Function to cut the schedule to have at most 3 items per day
     function cutShedule(result) {
         let Days = { sunday: [], monday: [], tuesday: [], wednesday: [], thursday: [], friday: [], saturday: [] }
@@ -25,6 +26,7 @@ export default function WaiterDays() {
         let allDays = { sunday: [], monday: [], tuesday: [], wednesday: [], thursday: [], friday: [], saturday: [] }
         let overDaysObject = { sunday: '', monday: '', tuesday: '', wednesday: '', thursday: '', friday: "", saturday: "" }
         let overDays = []
+        
 
         //loop through each result and separate the schedule objects
 
@@ -50,14 +52,30 @@ export default function WaiterDays() {
             }
         });
 
+         array=allDays
+
         return {
             allDays,
             overDaysObject
         }
     }
+    function daysWithUser(currentUser){
+        let daysWithUserArray=[]
+
+        for (const day in array) {
+            array[day].forEach(element => {
+                if(element.waiter_name===currentUser){
+                    daysWithUserArray.push(element.day)
+                }
+                
+            });
+        }
+        return daysWithUserArray
+    }
 
     return {
         cutShedule,
-        returnAllShedule
+        returnAllShedule,
+        daysWithUser
     };
 };

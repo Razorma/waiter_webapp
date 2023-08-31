@@ -59,13 +59,17 @@ document.addEventListener('DOMContentLoaded', function () {
         if (document.querySelectorAll(item)) {
             // Loop through each day button
             document.querySelectorAll(item).forEach((button) => {
+                button.checked = true
+                button.disabled = true;
                 button.addEventListener("click", (event) => {
                     //check if the checkboc is checked
-                    if (event.target.checked) {
-                        if (!confirm("This day has enough waiters Do you want to continue with this day? Press 'Cancel' to consider another day, and 'OK' to proceed.")) {
-                            event.preventDefault();
-                        }
-                    }
+                    event.target.checked = true
+                    event.target.disabled = true;
+                    // if (event.target.checked) {
+                    //     if (!confirm("This day has enough waiters Do you want to continue with this day? Press 'Cancel' to consider another day, and 'OK' to proceed.")) {
+                    //         event.preventDefault();
+                    //     }
+                    // }
                     
                 });
             });

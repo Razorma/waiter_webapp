@@ -134,7 +134,6 @@ export default function WaiterSchedule(db, bcrypt) {
     return result
 
   }
-  getEachDay()
 
 
   return {

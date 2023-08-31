@@ -30,25 +30,6 @@
               <div class="nameofday  {{#eq this.length 1}}Under{{else}}{{#eq this.length 2}}Under{{else}}{{#eq this.length 3}}Enough{{/eq}}{{/eq}}{{/eq}} {{lookup ../overGroupedDaysClass @key}}">
                 {{capitalize @key}}
               </div>
-              <div class="loading">
-              {{#eq this.length 1}}
-              <div class="waiter-bar first"></div>
-              <div class="waiter-bar"></div>
-              <div class="waiter-bar"></div>
-              {{else}}
-              {{#eq this.length 2}}
-              <div class="waiter-bar first"></div>
-              <div class="waiter-bar first"></div>
-              <div class="waiter-bar"></div>
-              {{else}}
-              {{#eq this.length 3}}
-              <div class="waiter-bar first"></div>
-              <div class="waiter-bar first"></div>
-              <div class="waiter-bar first"></div>
-              {{/eq}}
-              {{/eq}}
-              {{/eq}}
-              </div>
             </div>
             <div class="names">
               {{#each this}} 
