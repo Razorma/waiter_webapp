@@ -56,6 +56,9 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+// Define a route to handle requests to Home page
+app.get("/Welcome",userCreds.setSignupCode);
+app.post("/code",userCreds.getSignUpCode);
 
 // Define a route to handle GET requests to login page
 app.get("/",userCreds.root);
@@ -79,6 +82,7 @@ app.post("/schedule/:username",waiterRoutes.getUsernameSchedule);
 app.get("/home",AdminRoutes.getUsers);
 app.get("/list",AdminRoutes.getListUsers);
 app.post("/list/:username",AdminRoutes.removeWaiters);
+
 
 
 

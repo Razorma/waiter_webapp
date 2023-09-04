@@ -1,31 +1,50 @@
 import bcrypt from "bcrypt";
 let currentUser = ""
 const saltRounds = 10;
+let signUpCode = ''
 export default function userCredentialRoutes(waiterSchedule){
 
-    //get the login page
+    //get the home page
     function root(req, res){
-        res.render('login');
+        res.render('Welcome',{signUpCode});
     }
-
-    //Redirect to the login page
-    function getLogin(req, res){  
+    
+    function setSignupCode(req, res){
         res.redirect('/');
+    }
+    //Render to the login page
+    function getLogin(req, res){  
+        res.render('login');
     }
     //get the sign up page
     function getSignUp(req, res){
         res.render('signUp');
     }
+
+    function getSignUpCode(req, res){
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        
+        for (let i = 0; i < 8; i++) {
+          const randomIndex = Math.floor(Math.random() * characters.length);
+          signUpCode += characters.charAt(randomIndex);
+        }
+        res.redirect('/Welcome');
+      }
     
     //add user to the database
     async function addUser(req, res){
-        const { users, password ,type} = req.body;
+        const { users, password,code,surname,email} = req.body;
+        const type = "waiter"
+        
         currentUser = users
+       
+        if(code===signUpCode){
+            console.log(signUpCode+":--"+code)
         try{
 
     //hash the password 
           const hashedPassword = await bcrypt.hash(password, saltRounds);
-          await waiterSchedule.addWeiter(users,hashedPassword,type);
+          await waiterSchedule.addWeiter(users,hashedPassword,type,surname,email);
           req.flash('success', "User Successfully Added")
           res.render('signUp');
       
@@ -39,7 +58,10 @@ export default function userCredentialRoutes(waiterSchedule){
           console.log('error', error.message)
           res.redirect('/signUp')
         }
-        
+       }else{
+        req.flash('error', 'Wrong code')
+        res.redirect('/signUp')
+       }
         
       }
 
@@ -47,6 +69,8 @@ export default function userCredentialRoutes(waiterSchedule){
         root,
         getLogin,
         addUser,
-        getSignUp
+        getSignUp,
+        getSignUpCode,
+        setSignupCode
     }
 }

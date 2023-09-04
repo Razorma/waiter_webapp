@@ -1,0 +1,36 @@
+
+<div class="Home_page">
+  <header class="header">
+    <img src="./images/v5_8.png" alt="logo" class="logo" height="30px" />
+    <nav class="navbar">
+      <i class="bi bi-list" onclick="openmenu()"></i>
+      <ul class="nav-list" id="menu">
+        <i class="bi bi-x" onclick="closemenu()"></i>
+        <li onclick="closemenu()"><a href="/signUp">Sign up</a></li>
+        <li onclick="closemenu()"><a href="/login">login</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="Home_container">
+  </div>
+  <div class="welcome">
+    <h1>Brew<span class="head_Color">Crew</span></h1>
+    <h2>Wake Up to Seamless Shifts.</h2>
+    <div class="features">
+      <h3>Features</h3>
+      <div class="feature">
+        <div class="icon"><i class="bi bi-cup-hot-fill"></i></div>
+        <p>Streamline your scheduling process, saving time and effort.</p>
+      </div>
+      <div class="feature">
+        <div class="icon"><i class="bi bi-calendar-date"></i></i></div>
+        <p>Create, edit, and manage schedules effortlessly. Our intuitive interface makes scheduling a breeze.</p>
+      </div>
+    </div>
+    <p  class="signUp-message center">New to the website? <br> Get signUp code below</p>
+    <form action="/code" method="post">
+    <button type="submit" class="code-button">Get Code</button>
+    </form>
+    <p>{{signUpCode}}</p>
+  </div>
+</div>

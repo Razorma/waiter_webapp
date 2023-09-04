@@ -31,6 +31,26 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
    }
+   //Get the input for surnname if it exists
+   if (document.querySelector(".surnname")) {
+    const nameInput = document.querySelector(".surnname");
+    nameInput.addEventListener('keydown', function (press) {
+        //validate if it is real surnname
+        const letterRegex = /^[a-zA-Z ]*$/;
+        if (!letterRegex.test(press.key)) {
+            //Add the messageclass
+            document.querySelector('.errorS').classList.add("mess");
+            document.querySelector('.errorS').innerHTML = "Please enter real surnname of only letters";
+            //Add remove the element
+            setTimeout(function () {
+                document.querySelector('.errorS').classList.remove("mess");
+                document.querySelector('.errorS').innerHTML = '';
+            }, 2500)
+            //prevent the character
+            press.preventDefault();
+        }
+    });
+   }
     if (document.querySelector('.success')) {
         // If the innerHTML of the element is not empty
         if (document.querySelector('.success').innerHTML !== '') {
@@ -62,7 +82,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 button.checked = true
                 button.disabled = true;
                 button.addEventListener("click", (event) => {
-                    //check if the checkboc is checked
                     event.target.checked = true
                     event.target.disabled = true;
                     // if (event.target.checked) {

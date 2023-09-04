@@ -3,11 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {{!-- <title>Document</title> --}}
   </head>
   <body>
     <div class="container">
-        <form action="/signUp" method="post">
+        <form action="/signUp" method="post" class="signUp-box">
             <div class="signUp-box">
                 <h1>Sign Up</h1>
                   <div class="errorM"></div>
@@ -17,28 +16,32 @@
                   {{#if messages.success}}
                   <div class="success"><p class="mess">{{messages.success}}</p></div>
                   {{/if}}
-                 <div class="role">
-                  <div class="input_label">
-                    <label for="admin">admin</label>
-                    <input type="radio" name="type" id="admin" class="login-username" value="admin" required>
-                  </div>
-                  <div class="input_label">
-                    <label for="waiter">waiter</label>
-                    <input type="radio" name="type" id="waiter" class="login-username" value="waiter" required>  
-                  </div>
-                  
-                </div>
                 <div class="usename-box">
                     <label for="usename" class="loginLabel">Name</label>
                     <input type="text" name="users" id="usename" class="login-username signUpName" value="" required>
+                </div>
+                
+                <div class="usename-box">
+                  <div class="errorS "></div>
+                    <label for="email" class="loginLabel">Surnname</label>
+                    <input type="surnname" name="surname" id="surname" class="login-username surnname" value="" required>
+                </div>
+                <div class="usename-box">
+                    <label for="email" class="loginLabel">Email</label>
+                    <input type="email" name="email" id="email" class="login-username email" value="" required>
+                </div>
+                <div class="usename-box">
+                    <label for="email" class="loginLabel">Sign up Code</label>
+                    <input type="code" name="code" id="code" class="login-username code" value="" required>
                 </div>
                 <div class="password-box">
                     <label for="password" class="loginLabel">Password</label>
                     <input type="password" name="password" id="password" class="login-password" required>
                 </div>
-                <button type="submit">sign in</button>
+                <button type="submit">Sign Up</button>
                 </form>
                 <a href="/login">Back to login</a>
+                <a href="/Welcome">Home</a>
             </div>
         
     </div>

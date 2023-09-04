@@ -2,18 +2,18 @@
 export default function WaiterSchedule(db, bcrypt) {
 
   //Define a function to add waiters
-  async function addWeiter(name, enteredPassword, type) {
+  async function addWeiter(name, enteredPassword, type,surname,email) {
 
   //Insert waiter in the waiter table
     const insertQuery = `
-                INSERT INTO waiters (user_name, password,role)
-                VALUES ($1, $2,$3);
+                INSERT INTO waiters (user_name, password,role,surname,email)
+                VALUES ($1, $2,$3,$4,$5);
             `;
     
-    await db.query(insertQuery, [name, enteredPassword, type]);
+    await db.query(insertQuery, [name, enteredPassword, type,surname,email]);
 
   }
-
+  
   //Define a function to login
   async function login(name, enteredPassword) {
 

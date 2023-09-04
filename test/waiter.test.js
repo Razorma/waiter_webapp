@@ -23,10 +23,12 @@ describe('WaiterSchedule', function () {
         const user_name = 'bheka';
         const user_password = 'myPassword';
         const user_role= 'waiter';
+        const surname = "lushaba"
+        const email = "bheka@gmail.com"
         const checkTableQuery = `SELECT * FROM waiters;`
         const hashedPassword = await bcrypt.hash(user_password, saltRounds);
         
-        await waiterSchedule.addWeiter(user_name, hashedPassword,user_role);
+        await waiterSchedule.addWeiter(user_name, hashedPassword,user_role,surname,email);
     
         const tableRows = await db.query(checkTableQuery);
     
