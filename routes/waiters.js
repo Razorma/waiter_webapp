@@ -71,14 +71,18 @@ export default function WaiterRoutes(waiterSchedule) {
             const groupedDays = waiterDays.cutShedule(result)
             const overGroupedDaysClass = waiterDays.returnAllShedule(result).overDaysObject
             const daysWithUser = waiterDays.daysWithUser(currentUser)
-            req.flash('error', "Please select more than one day")
-            res.render('Waiters/waiters', {
-                name: username,
-                groupedDays,
-                overGroupedDaysClass,
-                daysWithUser
-            });
-            return
+            if(daysWithUser.length===0){
+                req.flash('error', "Please select more than one day")
+                res.render('Waiters/waiters', {
+                    name: username,
+                    groupedDays,
+                    overGroupedDaysClass,
+                    daysWithUser
+                });
+                return
+            }else{
+                selectedDays = [selectedDays];
+           }
         }
         if (selectedDays) {
             
