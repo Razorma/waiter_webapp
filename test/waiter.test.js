@@ -2,10 +2,12 @@ import assert from 'assert';
 import pgPromise from "pg-promise";
 import WaiterSchedule from '../Services/waiter.js';
 import bcrypt from "bcrypt";
+import dotenv from 'dotenv'
+dotenv.config();
 
 const pgp = pgPromise();
 
-const connectionString = process.env.DATABASE_URL_TEST || "postgres://nnqovoqb:cMw_O0V_sXhmAMZvNZiajsf5qsfDxX6e@trumpet.db.elephantsql.com/nnqovoqb"
+const connectionString = process.env.DATABASE_URL_TEST 
 
 const db = pgp({ connectionString});
 

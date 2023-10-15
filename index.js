@@ -6,19 +6,17 @@ import pgPromise from "pg-promise";
 import flash from "express-flash";
 import session from "express-session";
 import bcrypt from "bcrypt";
-import WaiterDays from "./waiter_days.js";
 import helpers from "./handlebarsHelpers.js"; 
 import WaiterRoutes from "./routes/waiters.js";
 import userCredentialRoutes from "./routes/user.js";
 import adminRoutes from "./routes/admin.js";
-
+import dotenv from 'dotenv'
+dotenv.config();
 
 let app = express();
 const pgp = pgPromise();
 
 const connectionString = process.env.DATABASE_URL 
-// const ssl = { rejectUnauthorized: false }
-//, ssl 
 
 const db = pgp({ connectionString});
 
@@ -35,7 +33,7 @@ const waiterSchedule = WaiterSchedule(db,bcrypt);
 const waiterRoutes = WaiterRoutes(waiterSchedule)
 const AdminRoutes = adminRoutes(waiterSchedule)
 const userCreds = userCredentialRoutes(waiterSchedule)
-const waiterDays = WaiterDays()
+
 
 
 
