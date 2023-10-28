@@ -1,3 +1,5 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 CREATE TABLE IF NOT EXISTS days (
     id serial PRIMARY KEY,
     day varchar(255) NOT NULL
@@ -11,6 +13,7 @@ CREATE TABLE IF NOT EXISTS shifts(
 
 CREATE TABLE IF NOT EXISTS waiters(
     id serial PRIMARY KEY,
+    user_id  uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     user_name varchar(255) NOT NULL,
     surname varchar(255) NOT NULL,
     email varchar(255) NOT NULL,

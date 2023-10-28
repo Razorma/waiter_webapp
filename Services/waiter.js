@@ -19,9 +19,10 @@ export default function WaiterSchedule(db, bcrypt) {
 
     //Retrieve the detailes for the specified user
     const checkUsernameQuery = `
-            SELECT user_name , password,role FROM waiters WHERE user_name = $1;
+            SELECT * FROM waiters WHERE user_name = $1;
             `;
     const [result] = await db.query(checkUsernameQuery, [name]);
+    
 
     //Throw error if the User is not found
     if (!result) {
@@ -36,7 +37,7 @@ export default function WaiterSchedule(db, bcrypt) {
 
     //Return role if password is correct and throw error if they dont match
     if (passwordMatch) {
-      return role;
+      return result;
     } else {
       throw new Error("Incorrect password");
     }

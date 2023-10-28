@@ -11,6 +11,8 @@ import WaiterRoutes from "./routes/waiters.js";
 import userCredentialRoutes from "./routes/user.js";
 import adminRoutes from "./routes/admin.js";
 import dotenv from 'dotenv'
+import cookieParser from "cookie-parser"
+import authenticateToken from "./middleware/authorize.js";
 dotenv.config();
 
 let app = express();
@@ -53,6 +55,7 @@ app.use(express.static('public'));
 // Parse URL-encoded and JSON request bodies
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(cookieParser());
 
 // Define a route to handle requests to Home page
 app.get("/Welcome",userCreds.setSignupCode);
@@ -69,17 +72,17 @@ app.post("/signUp", userCreds.addUser);
 
 //Define get and post routes for the waiters pages
 app.post("/waiter", waiterRoutes.login);
-app.get("/waiter", waiterRoutes.getWaiter);
-app.post("/waiter/:username",waiterRoutes.addSchedule);
-app.get("/waiter/:username",waiterRoutes.updateShedule);
-app.get("/schedule",waiterRoutes.getShedule);
-app.post("/schedule/:username",waiterRoutes.getUsernameSchedule);
+app.get("/waiter",authenticateToken, waiterRoutes.getWaiter);
+app.post("/waiter/:username",authenticateToken,waiterRoutes.addSchedule);
+app.get("/waiter/:username",authenticateToken,waiterRoutes.updateShedule);
+app.get("/schedule",authenticateToken,waiterRoutes.getShedule);
+app.post("/schedule/:username",authenticateToken,waiterRoutes.getUsernameSchedule);
 
 
 //Define get and post routes for the Admin pages
-app.get("/home",AdminRoutes.getUsers);
-app.get("/list",AdminRoutes.getListUsers);
-app.post("/list/:username",AdminRoutes.removeWaiters);
+app.get("/home",authenticateToken,AdminRoutes.getUsers);
+app.get("/list",authenticateToken,AdminRoutes.getListUsers);
+app.post("/list/:username",authenticateToken,AdminRoutes.removeWaiters);
 
 
 
@@ -88,5 +91,5 @@ app.post("/list/:username",AdminRoutes.removeWaiters);
 let PORT = process.env.PORT || 3003;
 
 app.listen(PORT, function(){
-  console.log('App starting on port', PORT);
+  console.log(`App listening on localhost:${PORT}`);
 });

@@ -2,6 +2,7 @@
 import express  from "express";
 import WaiterDays from "../waiter_days.js";
 import session from "express-session";
+import jwtTokens from "../utils/jwtTokenHelpers.js";
 let app = express();
 app.use(session({ 
     secret: 'Razorma', 
@@ -21,16 +22,19 @@ export default function WaiterRoutes(waiterSchedule) {
 
         try {
             //Check if the user is admin or waiter 
-            const role = await waiterSchedule.login(req.body.users, req.body.password);
+            const userInfo = await waiterSchedule.login(req.body.users, req.body.password);
             req.session.currentUser = req.body.users
 
             //Redirect user to admin pages if their role is admin
-            if (role === 'admin') {
-
+            if (userInfo.role === 'admin') {
+                const tokens = jwtTokens(userInfo)
+                res.cookie('user-token', tokens.accessToken, { httpOnly: true })
                 res.redirect('/home');
 
                 //Redirect user to waiter pages if their role is waiter
-            } else if (role === 'waiter') {
+            } else if (userInfo.role === 'waiter') {
+                const tokens = jwtTokens(userInfo)
+                res.cookie('user-token', tokens.accessToken, { httpOnly: true })
                 let userSchedule = []
                 const result = await waiterSchedule.getEachDay()
                 const groupedDays = waiterDays.cutShedule(result)
