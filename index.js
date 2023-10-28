@@ -35,6 +35,7 @@ const waiterSchedule = WaiterSchedule(db,bcrypt);
 const waiterRoutes = WaiterRoutes(waiterSchedule)
 const AdminRoutes = adminRoutes(waiterSchedule)
 const userCreds = userCredentialRoutes(waiterSchedule)
+const authenticate = authenticateToken()
 
 
 
@@ -72,17 +73,17 @@ app.post("/signUp", userCreds.addUser);
 
 //Define get and post routes for the waiters pages
 app.post("/waiter", waiterRoutes.login);
-app.get("/waiter",authenticateToken, waiterRoutes.getWaiter);
-app.post("/waiter/:username",authenticateToken,waiterRoutes.addSchedule);
-app.get("/waiter/:username",authenticateToken,waiterRoutes.updateShedule);
-app.get("/schedule",authenticateToken,waiterRoutes.getShedule);
-app.post("/schedule/:username",authenticateToken,waiterRoutes.getUsernameSchedule);
+app.get("/waiter",authenticate.authenticateWaiterToken, waiterRoutes.getWaiter);
+app.post("/waiter/:username",authenticate.authenticateWaiterToken,waiterRoutes.addSchedule);
+app.get("/waiter/:username",authenticate.authenticateWaiterToken,waiterRoutes.updateShedule);
+app.get("/schedule",authenticate.authenticateWaiterToken,waiterRoutes.getShedule);
+app.post("/schedule/:username",authenticate.authenticateWaiterToken,waiterRoutes.getUsernameSchedule);
 
 
 //Define get and post routes for the Admin pages
-app.get("/home",authenticateToken,AdminRoutes.getUsers);
-app.get("/list",authenticateToken,AdminRoutes.getListUsers);
-app.post("/list/:username",authenticateToken,AdminRoutes.removeWaiters);
+app.get("/home",authenticate.authenticateAdminToken,AdminRoutes.getUsers);
+app.get("/list",authenticate.authenticateAdminToken,AdminRoutes.getListUsers);
+app.post("/list/:username",authenticate.authenticateAdminToken,AdminRoutes.removeWaiters);
 
 
 
