@@ -25,6 +25,7 @@ export default function userCredentialRoutes(waiterSchedule) {
   //Render to the login page
   function getLogin(req, res) {
     res.clearCookie('user-token') 
+    res.clearCookie('admin-token')
     res.render('login');
   }
   //get the sign up page

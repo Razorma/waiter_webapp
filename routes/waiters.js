@@ -28,7 +28,7 @@ export default function WaiterRoutes(waiterSchedule) {
             //Redirect user to admin pages if their role is admin
             if (userInfo.role === 'admin') {
                 const tokens = jwtTokens(userInfo)
-                res.cookie('user-token', tokens.accessToken, { httpOnly: true })
+                res.cookie('admin-token', tokens.accessToken, { httpOnly: true })
                 res.redirect('/home');
 
                 //Redirect user to waiter pages if their role is waiter
