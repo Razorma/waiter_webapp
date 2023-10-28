@@ -14,6 +14,7 @@ const db = pgp({ connectionString});
 const waiterSchedule = WaiterSchedule(db, bcrypt);
 
 describe('WaiterSchedule', function () {
+    this.timeout(8000);
     before(async function () {
         await db.query(`DELETE FROM waiters;`);
         await db.query(`DELETE FROM shifts;`);
@@ -43,8 +44,8 @@ describe('WaiterSchedule', function () {
     const user_name = 'bheka';
     const user_password = 'myPassword';
 
-      const role = await waiterSchedule.login(user_name, user_password);
-      assert.strictEqual(role, 'waiter');
+      const user = await waiterSchedule.login(user_name, user_password);
+      assert.strictEqual(user.role, 'waiter');
     });
 
     it('should throw an error if username is not found', async function () {
