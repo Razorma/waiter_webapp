@@ -141,6 +141,6 @@ describe('WaiterSchedule', function () {
         });
     });
 
-    
+    after(db.$pool.end)
 });
    

@@ -24,7 +24,8 @@
   },
   "contributors": [],
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "nodemon index.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
